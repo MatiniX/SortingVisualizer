@@ -25,9 +25,14 @@ function changeAlgorithm(event) {
 function setArrSize(event) {
     props.methods.setArrSize(event.target.value);
 }
+function setSortingSpeed(event) {
+    if (Number.isInteger(parseInt(event.target.value))) {
+        console.log(event.target.value);
+        props.methods.setSortSpeed(parseInt(event.target.value));
+    }
+}
 
 function sort() {
-    console.log(currAlgorithm)
     switch (currAlgorithm) {
         case "mergeSort":
             props.methods.mergeSort()
@@ -50,6 +55,7 @@ function sort() {
                         <input type="range" min="10" max="350" className="slider" value={props.arrSize} onChange={setArrSize}/>
                         <p className="slider-text">Array size: {props.arrSize}</p>
                     </div>
+                    <input type="text" className="sorting-speed-area" placeholder={props.sortSpeed} onChange={setSortingSpeed}/>
                     <div className="sort-button">
                         <button onClick={sort}>
                             <span>Sort</span>

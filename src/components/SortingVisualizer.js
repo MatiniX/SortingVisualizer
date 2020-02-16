@@ -4,7 +4,7 @@ import {getMergeSortAnimations, getQuickSortAnimations} from "../sortingAlgorith
 import NavBar from "./NavBar"
 
 function SortingVisualizer() {
-    const SORT_SPEED_MS = 5
+    const [SORT_SPEED_MS, setSortSpeed] = useState(5);
     const [ARRAY_SIZE, setArrSize] = useState(100);
 
     const [arr, setArr] = useState([]);
@@ -94,10 +94,11 @@ function SortingVisualizer() {
             <NavBar methods={{
                 resetArray: resetArray,
                 setArrSize: setArrSize,
+                setSortSpeed: setSortSpeed,
                 mergeSort: mergeSort,
                 quickSort: quickSort
             }}
-             arrSize={ARRAY_SIZE}/>
+             arrSize={ARRAY_SIZE} sortSpeed={SORT_SPEED_MS}/>
             <div className="array-container">
             {arr.map((value, index) => 
                 <div className="array-bar" key={index} style={{height:`${value * 0.75}px`}}>
