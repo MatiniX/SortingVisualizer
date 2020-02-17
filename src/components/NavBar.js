@@ -7,7 +7,8 @@ const [currAlgorithm, setAlgorithm] = useState("mergeSort");
 
 const algorithms = [
     { value: 'mergeSort', label: 'Merge Sort' },
-    { value: 'quickSort', label: 'Quick Sort' }
+    { value: 'quickSort', label: 'Quick Sort' },
+    { value: 'bubbleSort', label: 'Bubble Sort' }
   ]
   const selecionStyling = {
       container: (provided, state) =>({
@@ -39,6 +40,9 @@ function sort() {
             break;
         case "quickSort":
             props.methods.quickSort()
+            break;
+        case "bubbleSort":
+            props.methods.bubbleSort()
             break;
     }
 }

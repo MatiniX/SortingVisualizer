@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import {getMergeSortAnimations, getQuickSortAnimations} from "../sortingAlgorithms/sortingAlgorithms"
+import {getMergeSortAnimations, getQuickSortAnimations, getBubbleSortAnimations} from "../sortingAlgorithms/sortingAlgorithms"
 //import sortFunctions from "../sortingAlgorithms/sortingAlgorithms"
 import NavBar from "./NavBar"
 
@@ -10,7 +10,7 @@ function SortingVisualizer() {
     const [arr, setArr] = useState([]);
 
     useEffect( () => {       
-        resetArray()
+        resetArray();
     },[])
 
     useEffect(() => {
@@ -20,10 +20,10 @@ function SortingVisualizer() {
     function resetArray() {
         let arr = []
         for(let i = 0; i < ARRAY_SIZE; i++){
-            arr.push(randomNumFromInerval(5,1000))
+            arr.push(randomNumFromInerval(5,1000));
         }
-        console.log(arr)
-        setArr(arr)
+        console.log(arr);
+        setArr(arr);
     }
 
     function mergeSort() {
@@ -65,6 +65,31 @@ function SortingVisualizer() {
         }
         console.log(arr);
     }
+    function bubbleSort() {
+        const animations = getBubbleSortAnimations(arr);
+        for (let i = 0; i < animations.length; i++) {
+            const arrayBars = document.getElementsByClassName("array-bar");
+            const isSwap = i % 4 === 1 || i % 4 === 2;
+            if (isSwap) {
+                setTimeout(() => {
+                    const [barIndex, newHeight] = animations[i];
+                    const barStyle = arrayBars[barIndex].style;
+                    barStyle.height = `${newHeight * 0.75}px`;
+                }, i * SORT_SPEED_MS);
+                
+            }
+            else {
+                const color = i % 4 === 0 ?  '#dd0510' : '#05b2dd';
+                const [barOneIdx, barTwoIdx] = animations[i];
+                const barOneStyle = arrayBars[barOneIdx].style;
+                const barTwoStyle = arrayBars[barTwoIdx].style;
+                setTimeout(() => {
+                    barOneStyle.backgroundColor = color;
+                    barTwoStyle.backgroundColor = color;
+                }, i * SORT_SPEED_MS);
+            }
+        }
+    }
 
     function compareArrays(arrOne, arrTwo) {
         for (let i = 0; i < arrOne.length; i++) {
@@ -75,7 +100,7 @@ function SortingVisualizer() {
         return true
     }
 
-    function testQuicksort() {
+    function testSort() {
         for (let i = 0; i < 100; i++) {
             const testArr = []
             for(let j = 0; j < randomNumFromInerval(0,100); j++) {
@@ -83,7 +108,7 @@ function SortingVisualizer() {
             }
             const arrCopy = testArr.slice()
             testArr.sort((a, b) => a - b)
-            const animations = getQuickSortAnimations(arrCopy);
+            const animations = getBubbleSortAnimations(arrCopy);
             const result = compareArrays(testArr, arrCopy)
             console.log(result)
         }
@@ -96,7 +121,8 @@ function SortingVisualizer() {
                 setArrSize: setArrSize,
                 setSortSpeed: setSortSpeed,
                 mergeSort: mergeSort,
-                quickSort: quickSort
+                quickSort: quickSort,
+                bubbleSort: bubbleSort
             }}
              arrSize={ARRAY_SIZE} sortSpeed={SORT_SPEED_MS}/>
             <div className="array-container">

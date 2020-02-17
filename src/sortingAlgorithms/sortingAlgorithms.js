@@ -8,8 +8,12 @@ export function getMergeSortAnimations(array) {
 export function getQuickSortAnimations(array) {
     const animations = [];
     if(array.length <= 1) return array;
-    const auxiliaryArray = array.slice();
     quickSort(array, 0, array.length - 1, animations)
+    return animations;
+}
+export function getBubbleSortAnimations(array) {
+    const animations = [];
+    bubbleSort(array, animations);
     return animations;
 }
 function quickSort(array, startIdx, endIdx, animations) {
@@ -105,4 +109,22 @@ function partition(array, startIdx, endIdx, animations) {
     array[endIdx] = temp;
     return i + 1;
 }
-//export default {getMergeSortAnimations, quickSort}
+
+function bubbleSort(array, animations) {
+    for (let i = 0; i < array.length - 1; i++) {
+        for (let j = 0; j < array.length - i - 1; j++) {
+            //Pushneme indexy porovnávanych prvkov aby sme zmenili ich farbu
+            animations.push([j,j + 1]);
+            if (array[j] > array[j + 1]) {
+                const temp = array[j];
+                array[j] = array[j + 1];
+                array[j + 1] = temp;
+            }
+            //Pushneme animácie pre výmenu prvkov
+            animations.push([j, array[j]]);
+            animations.push([j + 1, array[j + 1]]);
+            //Pushneme indexy porovnávanych prvkov aby sme zmenili farbu späť
+            animations.push([j, j + 1]);
+        }
+    }
+}
