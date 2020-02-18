@@ -16,6 +16,16 @@ export function getBubbleSortAnimations(array) {
     bubbleSort(array, animations);
     return animations;
 }
+export function getInsertionSortAnimations(array) {
+    const animations = [];
+    insertionSort(array, animations);
+    return animations;
+}
+export function getSelectionSortAnimations(array) {
+    const animations = [];
+    selcetionSort(array, animations);
+    return animations;
+}
 function quickSort(array, startIdx, endIdx, animations) {
     if(startIdx < endIdx) {
         let pi = partition(array, startIdx, endIdx, animations);
@@ -127,4 +137,62 @@ function bubbleSort(array, animations) {
             animations.push([j, j + 1]);
         }
     }
+}
+
+function insertionSort(array, animations) {
+    let j;
+    //Animácie pre zmenu farby 1. prvku
+    animations.push([]);
+    for (let i = 1; i < array.length; i++) {
+        j = i;
+        //Pushneme animáciu na zmenu farby porovnávaneho prvku
+        animations.push([j, array[j], "#dd0510"]);
+        while (j > 0 && array[j - 1] > array[j]) {
+            //Pushneme animácie pre swap prvkov a zmenu ich farieb
+            animations.push([j, array[j - 1], "green"]);
+            animations.push([j - 1, array[j], "#dd0510"]);
+            const temp = array[j];
+            array[j] = array[j - 1];
+            array[j - 1] = temp;
+            j--;
+        }
+        //Pushneme animáciu pre zmenu farby prvku ktorý sme práve zoradili
+        animations.push([j, array[j], "green"]);
+    }
+    //Animácia pre reset farieb
+    animations.push([]);
+}
+
+function selcetionSort(array, animations) {
+    for(let i = 0; i < array.length; i++) {
+        let minIdx = i;
+        //Pushneme animáciu pre zmenu farby prvku s počiatočným minIdx
+        animations.push([i, array[i], "#dd0510"]);
+        //Pushneme animáciu pre zmenu farby späť prvku s počiatočným minIdx
+        animations.push([i, array[i], "#05b2dd"]);
+        for (let j = i + 1; j < array.length; j++) {
+            //Pushneme animáciu pre zmenu farby práve porovnávaneho prvku
+            animations.push([j, array[j], "#dd0510"]);
+            //Pushneme animáciu pre zmenu farby späť práve porovnávaneho prvku
+            animations.push([j, array[j], "#05b2dd"]);
+            if (array[j] < array[minIdx] ) {
+                //Pushneme anímáciu pre zmenu farby predošlého najmenšieho prvku
+                animations.push([minIdx, array[minIdx], "#05b2dd"]);
+                minIdx = j;
+                //Pushneme animáciu pre označenie nového najmenšieho prvku
+                animations.push([minIdx, array[minIdx], "brown"]);
+            }
+        }
+        const temp = array[i];
+        array[i] = array[minIdx];
+        array[minIdx] = temp;
+        //Pushneme animáciu pre swap a zmenu farby už zoradeného prvku
+        animations.push([i, array[i], "green"]);
+        if(i !== minIdx) {
+            //Pushneme animáciu pre zmenu farby ešte nezoradeného prvku
+            animations.push([minIdx, array[minIdx], "#05b2dd"]);
+        }
+    }
+    //Animácia pre reset farieb
+    animations.push([]);
 }
