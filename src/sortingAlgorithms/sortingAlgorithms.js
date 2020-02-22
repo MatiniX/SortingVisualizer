@@ -5,11 +5,9 @@ export function getMergeSortAnimations(array) {
     mergeSortHelper(array, 0, array.length - 1, auxiliaryArray, animations);
     return animations;
 }
-export function getQuickSortAnimations(array) {
-    const animations = [];
+export function getQuickSortAnimations(array, DOMBars, sleepMS) {
     if(array.length <= 1) return array;
-    quickSort(array, 0, array.length - 1, animations)
-    return animations;
+    quickSort(array, 0, array.length - 1, DOMBars, sleepMS);
 }
 export function getBubbleSortAnimations(array) {
     const animations = [];
@@ -26,12 +24,13 @@ export function getSelectionSortAnimations(array) {
     selcetionSort(array, animations);
     return animations;
 }
-function quickSort(array, startIdx, endIdx, animations) {
+async function quickSort(array, startIdx, endIdx, DOMBars, sleepMS) {
     if(startIdx < endIdx) {
-        let pi = partition(array, startIdx, endIdx, animations);
+        let pi = await partition(array, startIdx, endIdx, DOMBars, sleepMS);
 
-        quickSort(array, startIdx, pi - 1, animations);
-        quickSort(array, pi + 1, endIdx, animations);
+        await Promise.all(
+            [quickSort(array, startIdx, pi - 1, DOMBars, sleepMS)],
+            [quickSort(array, pi + 1, endIdx, DOMBars, sleepMS)]);
     }
 }
 
@@ -83,38 +82,47 @@ function doMergeSort(mainArray, startIdx, middleIdx, endIdx, auxiliaryArray, ani
         mainArray[k++] = auxiliaryArray[j++];
     }
 }
-function partition(array, startIdx, endIdx, animations) {
-    //Pushneme index pivot pointu aby zmenil farbu
-    animations.push([endIdx, array[endIdx], "green"]);
+async function partition(array, startIdx, endIdx, DOMBars, sleepMS) {
+    //Nastavíme farbu pivota
+    DOMBars[endIdx].style.backgroundColor = 'green';
 
     let pivot = array[endIdx];
     let i = startIdx - 1;
 
     for (let j = startIdx; j < endIdx; j++) {
-        //Zmeníme farbu práve porovnávaného prvku
-        animations.push([j, array[j], "#dd0510"])
+        //Zmeníme farbu práve porovnávaného prvku a počkáme
+        DOMBars[j].style.backgroundColor = "#dd0510";
+        await sleep(sleepMS);
         if (array[j] < pivot) {
             i++;
-            //Pushneme index i a zmenu farby
-            animations.push([i, array[i], "#dd0510"]);
-            //Pushneme prvok na indexu i a nastávíme jeho výšku na výšku prvku j v pomocnej array a zmeníme farbu späť
-            animations.push([i, array[j], "#05b2dd"]);
+            //Zmeníme farbu prvku ktorý sa chystáme vymeniť a počkáme
+            DOMBars[i].style.backgroundColor = "#dd0510";
+            await sleep(sleepMS);
+            //Nastavíme výšku prvku na indexe i na výšku prvku na indexe j a zmeníme farbu
+            DOMBars[i].style.height = `${array[j] * 0.75}px`;
+            DOMBars[i].style.backgroundColor = "#05b2dd";
             const temp = array[i];
-            //Pushneme prvok na indexu j a nastávíme jeho výšku na výšku prvku i v pomocnej array a zmeníme farbu späť
-            animations.push([j, array[i], "#05b2dd"])
+            //Nastavíme výšku prvku na indexe j na výšku prvku na predošlom indexe i, zmeníme farbu a počkáme
+            DOMBars[j].style.height = `${temp * 0.75}px`
+            DOMBars[j].style.backgroundColor = "#05b2dd";
+            await sleep(sleepMS);
             array[i] = array[j];
             array[j] = temp;           
         }
         //Zmeníme farbu práve porovnávaného prvku späť
-        animations.push([j, array[j], "#05b2dd"])
+        DOMBars[j].style.backgroundColor = "#05b2dd";
     }
     //Zmeníme farbu pivot na červenú aby sme naznačili posledný swap
-    animations.push([endIdx, array[endIdx], "#dd0510"]);
-    //Pushneme animáciu pre swap prvku na i+1 s pivotom
-    animations.push([i + 1, array[endIdx], "#05b2dd"]);
+    DOMBars[endIdx].backgroundColor = "#dd0510";
+    //Nastavíme výšku prvku na indexe i+1 na výšku pivota
+    DOMBars[i + 1].style.height = `${array[endIdx] * 0.75}px`;
+    DOMBars[i + 1].style.backgroundColor = "#05b2dd";
+    await sleep(sleepMS);
+
     const temp = array[i + 1];
-    //Pushneme animáciu pre swap pivota s prvkom na i+1
-    animations.push([endIdx, temp, "#05b2dd"]);
+    //Nastavíme výšku pivota na výšku na indexe i+1
+    DOMBars[endIdx].style.height = `${temp * 0.75}px`;
+    DOMBars[endIdx].style.backgroundColor = "#05b2dd";
     array[i + 1] = array[endIdx];
     array[endIdx] = temp;
     return i + 1;
@@ -195,4 +203,7 @@ function selcetionSort(array, animations) {
     }
     //Animácia pre reset farieb
     animations.push([]);
+}
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }

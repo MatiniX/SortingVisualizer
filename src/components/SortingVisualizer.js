@@ -6,7 +6,7 @@ import NavBar from "./NavBar"
 function SortingVisualizer() {
     const [SORT_SPEED_MS, setSortSpeed] = useState(5);
     const [ARRAY_SIZE, setArrSize] = useState(100);
-    //const [isSorting, setIsSorting] = useState(true);
+    //const [isSorting, setIsSorting] = useState(false);
 
     const [arr, setArr] = useState([]);
 
@@ -24,11 +24,14 @@ function SortingVisualizer() {
             arr.push(randomNumFromInerval(5,1000));
         }
         console.log(arr);
+        setIsSorting(false);
+        //console.log(isSorting);
         setArr(arr);
     }
 
     function mergeSort() {
-        const animations = getMergeSortAnimations(arr)
+        const animations = getMergeSortAnimations(arr);
+        
         for(let i = 0; i < animations.length; i++) {
             const arrayBars = document.getElementsByClassName("array-bar")
             const isColorChange = i % 3 !== 2
@@ -52,18 +55,8 @@ function SortingVisualizer() {
         }
     }
     function quickSort() {
-        const animations = getQuickSortAnimations(arr);
-        console.log(animations);
-        for (let i = 0; i < animations.length; i++) {
-            const arrayBars = document.getElementsByClassName("array-bar");
-            const [bar, height, color] = animations[i];
-            
-            setTimeout(() => {
-                const barStyle = arrayBars[bar].style;
-                barStyle.height = `${height * 0.75}px`;
-                barStyle.backgroundColor = color;
-            }, i * SORT_SPEED_MS)
-        }
+        const arrayBars = document.getElementsByClassName("array-bar");
+        getQuickSortAnimations(arr, arrayBars, SORT_SPEED_MS);
     }
     function bubbleSort() {
         const animations = getBubbleSortAnimations(arr);
@@ -188,8 +181,6 @@ function SortingVisualizer() {
         </>
     )
 }
-
-
 
 const randomNumFromInerval = (min, max) => Math.max(min, Math.round(max * Math.random()))
 
