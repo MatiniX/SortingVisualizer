@@ -24,8 +24,6 @@ function SortingVisualizer() {
             arr.push(randomNumFromInerval(5,1000));
         }
         console.log(arr);
-        setIsSorting(false);
-        //console.log(isSorting);
         setArr(arr);
     }
 
