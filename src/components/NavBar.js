@@ -10,7 +10,8 @@ const algorithms = [
     { value: 'quickSort', label: 'Quick Sort' },
     { value: 'bubbleSort', label: 'Bubble Sort' },
     { value: 'insertionSort', label: 'Insertion Sort' },
-    { value: 'selectionSort', label: 'Selection Sort' }
+    { value: 'selectionSort', label: 'Selection Sort' },
+    { value: 'shellSort', label: 'Shell Sort' }
   ]
   const selecionStyling = {
       container: (provided, state) =>({
@@ -51,6 +52,9 @@ function sort() {
             break;
         case "selectionSort":
             props.methods.selectionSort()
+            break;
+        case "shellSort":
+            props.methods.shellSort()
             break;
     }
 }

@@ -24,6 +24,11 @@ export function getSelectionSortAnimations(array) {
     selcetionSort(array, animations);
     return animations;
 }
+export function getShellSortAnimations(array) {
+    const animations = [];
+    shellSort(array, animations);
+    return animations;
+}
 async function quickSort(array, startIdx, endIdx, DOMBars, sleepMS) {
     if(startIdx < endIdx) {
         let pi = await partition(array, startIdx, endIdx, DOMBars, sleepMS);
@@ -203,6 +208,28 @@ function selcetionSort(array, animations) {
     }
     //Animácia pre reset farieb
     animations.push([]);
+}
+function shellSort(array, animations) {
+    for (let gap = array.length / 2 ; gap > 0; gap = Math.floor(gap / 2)) {
+        for (let i = gap; i < array.length; i++) {
+            //Pushneme animáciu pre označenie temp 
+            //animations.push([i, array[i], "#dd0510"]);
+            let temp = array[i];
+            let j;
+            for (j = i; j >= gap && array[j - gap] > temp; j -= gap) {
+                //Pushneme animáciu pre zmenu veľkosti a farby
+                animations.push([j, array[j - gap], "#dd0510"]);
+                //Animácia pre zmenu farby späť
+                animations.push([j, array[j - gap], "#05b2dd"]);
+                array[j] = array[j - gap]
+            }
+            //Pushnema animáciu pre zmenu farby a veľkosti
+            animations.push([j, temp, "#dd0510"]);
+            //Pushnema animáciu pre zmenu farby späť
+            animations.push([j, temp, "#05b2dd"]);
+            array[j] = temp;
+        }
+    }
 }
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));

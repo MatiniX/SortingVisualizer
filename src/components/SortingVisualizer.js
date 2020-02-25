@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react"
-import {getMergeSortAnimations, getQuickSortAnimations, getBubbleSortAnimations, getInsertionSortAnimations, getSelectionSortAnimations} from "../sortingAlgorithms/sortingAlgorithms"
-//import sortFunctions from "../sortingAlgorithms/sortingAlgorithms"
+import {getMergeSortAnimations, getQuickSortAnimations, getBubbleSortAnimations, getInsertionSortAnimations, getSelectionSortAnimations, getShellSortAnimations} from "../sortingAlgorithms/sortingAlgorithms"
 import NavBar from "./NavBar"
 
 function SortingVisualizer() {
     const [SORT_SPEED_MS, setSortSpeed] = useState(5);
     const [ARRAY_SIZE, setArrSize] = useState(100);
-    //const [isSorting, setIsSorting] = useState(false);
 
     const [arr, setArr] = useState([]);
 
@@ -25,6 +23,7 @@ function SortingVisualizer() {
         }
         console.log(arr);
         setArr(arr);
+        testSort();
     }
 
     function mergeSort() {
@@ -133,6 +132,18 @@ function SortingVisualizer() {
             }
         }
     }
+    function shellSort() {
+        const animations = getShellSortAnimations(arr);
+        for (let i = 0; i < animations.length; i++) {
+            const arrayBars = document.getElementsByClassName("array-bar");
+            const [barIndex, newHeight, color] = animations[i];
+            const barStyle = arrayBars[barIndex].style;
+            setTimeout(() => {
+                barStyle.backgroundColor = color;
+                barStyle.height = `${newHeight * 0.75}px`;
+            }, i * SORT_SPEED_MS);
+        }
+    }
 
     function compareArrays(arrOne, arrTwo) {
         for (let i = 0; i < arrOne.length; i++) {
@@ -145,15 +156,16 @@ function SortingVisualizer() {
 
     function testSort() {
         for (let i = 0; i < 100; i++) {
-            const testArr = []
-            for(let j = 0; j < randomNumFromInerval(0,100); j++) {
+            const testArr = [];
+            for(let j = 0; j < randomNumFromInerval(4,100); j++) {
                 testArr.push(randomNumFromInerval(0,1000))
             }
             const arrCopy = testArr.slice()
             testArr.sort((a, b) => a - b)
-            const animations = getSelectionSortAnimations(arrCopy);
-            const result = compareArrays(testArr, arrCopy)
-            console.log(result)
+            const animations = getShellSortAnimations(arrCopy);
+            const result = compareArrays(testArr, arrCopy);
+            //console.log({testArr, arrCopy});
+            console.log(result);
         }
     }
 
@@ -167,7 +179,8 @@ function SortingVisualizer() {
                 quickSort: quickSort,
                 bubbleSort: bubbleSort,
                 insertionSort: insertionSort,
-                selectionSort: selectionSort
+                selectionSort: selectionSort,
+                shellSort: shellSort
             }}
              arrSize={ARRAY_SIZE} sortSpeed={SORT_SPEED_MS}/>
             <div className="array-container">
