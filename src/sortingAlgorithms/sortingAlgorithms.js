@@ -1,34 +1,75 @@
-export function getMergeSortAnimations(array) {
-    const animations = [];
+//#region Merge Sort
+
+function getMergeSortAnimations(array, DOMBars, sleepMS) {
     if(array.length <= 1) return array;
     const auxiliaryArray = array.slice();
-    mergeSortHelper(array, 0, array.length - 1, auxiliaryArray, animations);
-    return animations;
+    mergeSortHelper(array, 0, array.length - 1, auxiliaryArray, DOMBars, sleepMS);
 }
-export function getQuickSortAnimations(array, DOMBars, sleepMS) {
+
+async function mergeSortHelper(mainArray, startIdx, endIdx, auxiliaryArray, DOMBars, sleepMS) {
+    if(startIdx === endIdx) return;
+    const middleIdx = Math.floor((startIdx + endIdx) / 2);
+    await Promise.all(
+        [mergeSortHelper(auxiliaryArray, startIdx , middleIdx, mainArray, DOMBars, sleepMS)],
+        [mergeSortHelper(auxiliaryArray, middleIdx + 1, endIdx, mainArray, DOMBars, sleepMS)]);
+    await doMergeSort(mainArray, startIdx, middleIdx, endIdx, auxiliaryArray, DOMBars, sleepMS);
+}
+
+async function doMergeSort(mainArray, startIdx, middleIdx, endIdx, auxiliaryArray, DOMBars, sleepMS) {
+    let k = startIdx;
+    let i = startIdx;
+    let j = middleIdx + 1;
+
+    while (i <= middleIdx && j <= endIdx) {
+        //Zmena farby porovnávaných prvkov
+        DOMBars[i].style.backgroundColor = "#dd0510";
+        DOMBars[j].style.backgroundColor = "#dd0510";
+        //Sleep aby sme vizualizovali zmenu
+        await sleep(sleepMS);
+        //Zmena farby porovnávaných prvkov späť
+        DOMBars[i].style.backgroundColor = "#05b2dd";
+        DOMBars[j].style.backgroundColor = "#05b2dd";
+        if (auxiliaryArray[i] <= auxiliaryArray[j]) {
+            //Prepíšeme hodnotu na indexu k v originálnej array na hodnotu na pozícii i v pomocnej array
+            DOMBars[k].style.height = `${auxiliaryArray[i] * 0.75}px`;
+            mainArray[k++] = auxiliaryArray[i++];
+        }
+        else {
+            //Prepíšeme hodnotu na indexu k v originálnej array na hodnotu na pozícii j v pomocnej array
+            DOMBars[k].style.height = `${auxiliaryArray[j] * 0.75}px`;
+            mainArray[k++] = auxiliaryArray[j++];
+        }
+    }
+    while (i <= middleIdx) {
+        //Kopírovanie hodnôt z prvej polovice array ak ostali
+        DOMBars[i].style.backgroundColor = "#dd0510";
+        await sleep(sleepMS);
+        //Hodnoty ktoré v mergeSorte porovnávame; pushneme znova aby sme zmenili ich farbu späť
+        DOMBars[i].style.backgroundColor = "#05b2dd";
+        //Prepíšeme hodnotu na pozícii k v originálne array na hodnotu na pozícii i v pomocnej array
+        DOMBars[k].style.height = `${auxiliaryArray[i] * 0.75}px`;
+        mainArray[k++] = auxiliaryArray[i++];
+    }
+    while (j <= endIdx) {
+        //Kopírovanie hodnôt z druhej polovice array ak ostali
+        DOMBars[j].style.backgroundColor = "#dd0510";
+        await sleep(sleepMS);
+        //Hodnoty ktoré v mergeSorte porovnávame; pushneme znova aby sme zmenili ich farbu späť
+        DOMBars[j].style.backgroundColor = "#05b2dd";
+        //Prepíšeme hodnotu na pozícii k v originálne array na hodnotu na pozícii j v pomocnej array
+        DOMBars[k].style.height = `${auxiliaryArray[j] * 0.75}px`;
+        mainArray[k++] = auxiliaryArray[j++];
+    }
+}
+
+//#endregion
+
+//#region Quick Sort
+function getQuickSortAnimations(array, DOMBars, sleepMS) {
     if(array.length <= 1) return array;
     quickSort(array, 0, array.length - 1, DOMBars, sleepMS);
 }
-export function getBubbleSortAnimations(array) {
-    const animations = [];
-    bubbleSort(array, animations);
-    return animations;
-}
-export function getInsertionSortAnimations(array) {
-    const animations = [];
-    insertionSort(array, animations);
-    return animations;
-}
-export function getSelectionSortAnimations(array) {
-    const animations = [];
-    selcetionSort(array, animations);
-    return animations;
-}
-export function getShellSortAnimations(array) {
-    const animations = [];
-    shellSort(array, animations);
-    return animations;
-}
+
 async function quickSort(array, startIdx, endIdx, DOMBars, sleepMS) {
     if(startIdx < endIdx) {
         let pi = await partition(array, startIdx, endIdx, DOMBars, sleepMS);
@@ -39,54 +80,6 @@ async function quickSort(array, startIdx, endIdx, DOMBars, sleepMS) {
     }
 }
 
-function mergeSortHelper(mainArray, startIdx, endIdx, auxiliaryArray, animations) {
-    if(startIdx === endIdx) return;
-    const middleIdx = Math.floor((startIdx + endIdx) / 2);
-    mergeSortHelper(auxiliaryArray, startIdx , middleIdx, mainArray, animations);
-    mergeSortHelper(auxiliaryArray, middleIdx + 1, endIdx, mainArray, animations);
-    doMergeSort(mainArray, startIdx, middleIdx, endIdx, auxiliaryArray, animations);
-}
-
-function doMergeSort(mainArray, startIdx, middleIdx, endIdx, auxiliaryArray, animations) {
-    let k = startIdx;
-    let i = startIdx;
-    let j = middleIdx + 1;
-
-    while (i <= middleIdx && j <= endIdx) {
-        //Hodnoty ktoré v mergeSorte porovnávame; pushneme raz aby sme zmenili ich farbu
-        animations.push([i, j]);
-        //Hodnoty ktoré v mergeSorte porovnávame; pushneme znova aby sme zmenili ich farbu späť
-        animations.push([i, j]);
-        if (auxiliaryArray[i] <= auxiliaryArray[j]) {
-            //Prepíšeme hodnotu na indexu k v originálnej array na hodnotu na pozícii i v pomocnej array
-            animations.push([k, auxiliaryArray[i]]);
-            mainArray[k++] = auxiliaryArray[i++];
-        }
-        else {
-            //Prepíšeme hodnotu na indexu k v originálnej array na hodnotu na pozícii j v pomocnej array
-            animations.push([k, auxiliaryArray[j]]);
-            mainArray[k++] = auxiliaryArray[j++];
-        }
-    }
-    while (i <= middleIdx) {
-        //Hodnoty ktoré v mergeSorte porovnávame; pushneme raz aby sme zmenili ich farbu
-        animations.push([i, i]);
-        //Hodnoty ktoré v mergeSorte porovnávame; pushneme znova aby sme zmenili ich farbu späť
-        animations.push([i, i]);
-        //Prepíšeme hodnotu na pozícii k v originálne array na hodnotu na pozícii i v pomocnej array
-        animations.push([k, auxiliaryArray[i]]);
-        mainArray[k++] = auxiliaryArray[i++];
-    }
-    while (j <= endIdx) {
-        //Hodnoty ktoré v mergeSorte porovnávame; pushneme raz aby sme zmenili ich farbu
-        animations.push([j, j]);
-        //Hodnoty ktoré v mergeSorte porovnávame; pushneme znova aby sme zmenili ich farbu späť
-        animations.push([j, j]);
-        //Prepíšeme hodnotu na pozícii k v originálne array na hodnotu na pozícii j v pomocnej array
-        animations.push([j, auxiliaryArray[j]]);
-        mainArray[k++] = auxiliaryArray[j++];
-    }
-}
 async function partition(array, startIdx, endIdx, DOMBars, sleepMS) {
     //Nastavíme farbu pivota
     DOMBars[endIdx].style.backgroundColor = 'green';
@@ -132,6 +125,14 @@ async function partition(array, startIdx, endIdx, DOMBars, sleepMS) {
     array[endIdx] = temp;
     return i + 1;
 }
+//#endregion
+
+//#region Bubble Sort
+function getBubbleSortAnimations(array) {
+    const animations = [];
+    bubbleSort(array, animations);
+    return animations;
+}
 
 function bubbleSort(array, animations) {
     for (let i = 0; i < array.length - 1; i++) {
@@ -150,6 +151,14 @@ function bubbleSort(array, animations) {
             animations.push([j, j + 1]);
         }
     }
+}
+//#endregion
+
+//#region Insertion Sort
+function getInsertionSortAnimations(array) {
+    const animations = [];
+    insertionSort(array, animations);
+    return animations;
 }
 
 function insertionSort(array, animations) {
@@ -174,6 +183,14 @@ function insertionSort(array, animations) {
     }
     //Animácia pre reset farieb
     animations.push([]);
+}
+//#endregion
+
+//#region Selection Sort
+function getSelectionSortAnimations(array) {
+    const animations = [];
+    selcetionSort(array, animations);
+    return animations;
 }
 
 function selcetionSort(array, animations) {
@@ -209,6 +226,15 @@ function selcetionSort(array, animations) {
     //Animácia pre reset farieb
     animations.push([]);
 }
+//#endregion
+
+//#region Shell Sort
+function getShellSortAnimations(array) {
+    const animations = [];
+    shellSort(array, animations);
+    return animations;
+}
+
 function shellSort(array, animations) {
     for (let gap = Math.floor(array.length / 2) ; gap > 0; gap = Math.floor(gap / 2)) {
         for (let i = gap; i < array.length; i++) {
@@ -233,6 +259,10 @@ function shellSort(array, animations) {
         }
     }
 }
+//#endregion
+
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+export default {getMergeSortAnimations, getQuickSortAnimations,getBubbleSortAnimations, getInsertionSortAnimations, getSelectionSortAnimations, getShellSortAnimations};

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import {getMergeSortAnimations, getQuickSortAnimations, getBubbleSortAnimations, getInsertionSortAnimations, getSelectionSortAnimations, getShellSortAnimations} from "../sortingAlgorithms/sortingAlgorithms"
+import algorithms from "../sortingAlgorithms/sortingAlgorithms"
 import NavBar from "./NavBar"
 
 function SortingVisualizer() {
@@ -23,40 +23,18 @@ function SortingVisualizer() {
         }
         console.log(arr);
         setArr(arr);
-        testSort();
     }
 
     function mergeSort() {
-        const animations = getMergeSortAnimations(arr);
-        
-        for(let i = 0; i < animations.length; i++) {
-            const arrayBars = document.getElementsByClassName("array-bar")
-            const isColorChange = i % 3 !== 2
-            if(isColorChange) {
-                const [barOneIdx, barTwoIdx] = animations[i]
-                const barOneStyle = arrayBars[barOneIdx].style
-                const barTwoStyle = arrayBars[barTwoIdx].style
-                const color = i % 3 === 0 ?  '#dd0510' : '#05b2dd'
-                setTimeout(() => {
-                    barOneStyle.backgroundColor = color
-                    barTwoStyle.backgroundColor = color
-                }, i * SORT_SPEED_MS)
-            }
-            else {
-                setTimeout(() => {
-                    const [barOneIdx, newHeight] = animations[i]
-                    const barOneStyle = arrayBars[barOneIdx].style
-                    barOneStyle.height = `${newHeight * 0.75}px`
-                }, i * SORT_SPEED_MS)
-            }
-        }
+        const arrayBars = document.getElementsByClassName("array-bar");
+        algorithms.getMergeSortAnimations(arr, arrayBars, SORT_SPEED_MS);
     }
     function quickSort() {
         const arrayBars = document.getElementsByClassName("array-bar");
-        getQuickSortAnimations(arr, arrayBars, SORT_SPEED_MS);
+        algorithms.getQuickSortAnimations(arr, arrayBars, SORT_SPEED_MS);
     }
     function bubbleSort() {
-        const animations = getBubbleSortAnimations(arr);
+        const animations = algorithms.getBubbleSortAnimations(arr);
         for (let i = 0; i < animations.length; i++) {
             const arrayBars = document.getElementsByClassName("array-bar");
             const isSwap = i % 4 === 1 || i % 4 === 2;
@@ -81,7 +59,7 @@ function SortingVisualizer() {
         }
     }
     function insertionSort() {
-        const animations = getInsertionSortAnimations(arr);
+        const animations = algorithms.getInsertionSortAnimations(arr);
         console.log(animations);
         for (let i = 0; i < animations.length; i++) {
             const arrayBars = document.getElementsByClassName("array-bar");
@@ -110,7 +88,7 @@ function SortingVisualizer() {
         }
     }
     function selectionSort() {
-        const animations = getSelectionSortAnimations(arr);
+        const animations = algorithms.getSelectionSortAnimations(arr);
         console.log(animations);
         for (let i = 0; i < animations.length; i++) {
             const arrayBars = document.getElementsByClassName("array-bar");
@@ -133,7 +111,7 @@ function SortingVisualizer() {
         }
     }
     function shellSort() {
-        const animations = getShellSortAnimations(arr);
+        const animations = algorithms.getShellSortAnimations(arr);
         console.log(animations);
         for (let i = 0; i < animations.length; i++) {
             const arrayBars = document.getElementsByClassName("array-bar");
@@ -173,9 +151,8 @@ function SortingVisualizer() {
             }
             const arrCopy = testArr.slice()
             testArr.sort((a, b) => a - b)
-            const animations = getShellSortAnimations(arrCopy);
+            const animations = algorithms.getShellSortAnimations(arrCopy);
             const result = compareArrays(testArr, arrCopy);
-            //console.log({testArr, arrCopy});
             console.log(result);
         }
     }
