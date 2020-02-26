@@ -134,14 +134,25 @@ function SortingVisualizer() {
     }
     function shellSort() {
         const animations = getShellSortAnimations(arr);
+        console.log(animations);
         for (let i = 0; i < animations.length; i++) {
             const arrayBars = document.getElementsByClassName("array-bar");
-            const [barIndex, newHeight, color] = animations[i];
-            const barStyle = arrayBars[barIndex].style;
-            setTimeout(() => {
-                barStyle.backgroundColor = color;
-                barStyle.height = `${newHeight * 0.75}px`;
-            }, i * SORT_SPEED_MS);
+            const [barOne, barTwo, state] = animations[i];
+            if (state === "compare") {
+                const barOneStyle = arrayBars[barOne].style;
+                const barTwoStyle = arrayBars[barTwo].style;
+                setTimeout(() => {
+                    barOneStyle.backgroundColor = barOneStyle.backgroundColor !== '#05b2dd'? '#dd0510' : '#05b2dd';
+                    barTwoStyle.backgroundColor = barTwoStyle.backgroundColor !== '#05b2dd'? '#dd0510' : '#05b2dd';
+                }, i * SORT_SPEED_MS);
+            }
+            else {
+                const barStyle = arrayBars[barOne].style;
+                setTimeout(() => {
+                    barStyle.backgroundColor = state;
+                    barStyle.height = `${barTwo * 0.75}px`;
+                }, i * SORT_SPEED_MS);
+            }
         }
     }
 

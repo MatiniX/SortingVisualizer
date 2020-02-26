@@ -210,16 +210,18 @@ function selcetionSort(array, animations) {
     animations.push([]);
 }
 function shellSort(array, animations) {
-    for (let gap = array.length / 2 ; gap > 0; gap = Math.floor(gap / 2)) {
+    for (let gap = Math.floor(array.length / 2) ; gap > 0; gap = Math.floor(gap / 2)) {
         for (let i = gap; i < array.length; i++) {
             //Pushneme animáciu pre označenie temp 
             //animations.push([i, array[i], "#dd0510"]);
             let temp = array[i];
             let j;
             for (j = i; j >= gap && array[j - gap] > temp; j -= gap) {
-                //Pushneme animáciu pre zmenu veľkosti a farby
-                animations.push([j, array[j - gap], "#dd0510"]);
+                //Pushneme animáciu pre zmenu farby
+                animations.push([j, j - gap, "compare"]);
                 //Animácia pre zmenu farby späť
+                animations.push([j, j - gap, "compare"]);
+                //Animácie pre zmenu hodnôt
                 animations.push([j, array[j - gap], "#05b2dd"]);
                 array[j] = array[j - gap]
             }
