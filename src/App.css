@@ -97,6 +97,7 @@
   min-width: 200px;
   display: flex;
   flex-direction: column;
+  margin-left: 5em;
 }
 .slider {
   -webkit-appearance: none;  /* Override default CSS styles */
@@ -154,3 +155,24 @@
   text-align: center;
 }
 
+.ask-button {
+  justify-self: flex-start;
+  align-self: center;
+  margin-left: 0.3em;
+}
+.ask-button button {
+  background-color: var(--buttonColor);
+  border: none;
+  color: white;
+  text-align: center;
+  font-size: 1.1em;
+  width: 130%;
+  padding: 0.5em;
+  cursor: pointer;
+  border-radius: 0.7em;
+  transition-duration: 0.5s;
+}
+.ask-button button:hover {
+  background-color: white;
+  color: var(--backgroundColor);
+}

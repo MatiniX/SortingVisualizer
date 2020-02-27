@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react"
 import Select from "react-select"
+import ReactModal from "react-modal"
 
 function NavBar(props) {
 
 const [currAlgorithm, setAlgorithm] = useState("mergeSort");
+const [isModalOpen, setModalOpen] = useState(false);
 
 const algorithms = [
     { value: 'mergeSort', label: 'Merge Sort' },
@@ -16,7 +18,7 @@ const algorithms = [
   const selecionStyling = {
       container: (provided, state) =>({
           ...provided,
-          marginLeft: '0.5em',
+          marginLeft: '2em',
           alignSelf: 'center',
           minWidth: '10em'
       })
@@ -58,6 +60,33 @@ function sort() {
             break;
     }
 }
+function getHTML() {
+    let html;
+
+    switch (currAlgorithm) {
+        case "mergeSort":
+            html  = <button onClick={() => setModalOpen(false)}>Merge Sort</button>;
+            break;
+        case "quickSort":
+            html = <button onClick={() => setModalOpen(false)}>Quick Sort</button>
+            break;
+        case "bubbleSort":
+            html = <button onClick={() => setModalOpen(false)}>Bubble Sort</button>
+            break;
+        case "insertionSort":
+            html = <button onClick={() => setModalOpen(false)}>Insertion Sort</button>
+            break;
+        case "selectionSort":
+            html = <button onClick={() => setModalOpen(false)}>Selection Sort</button>
+            break;
+        case "shellSort":
+            html = <button onClick={() => setModalOpen(false)}>Shell Sort</button>
+            break;
+    }
+    return html;
+}
+
+
     return(
         <div>
             <nav className="navbar-container">              
@@ -67,6 +96,11 @@ function sort() {
                         </button>
                     </div>
                     <Select options={algorithms} onChange={changeAlgorithm} defaultValue={algorithms[0]} styles={selecionStyling}/>
+                    <div className="ask-button" onClick={() => setModalOpen(true)}>
+                        <button >
+                            <span>?</span>
+                        </button>
+                    </div>
                     <div className="slider-container">
                         <input type="range" min="10" max="350" className="slider" value={props.arrSize} onChange={setArrSize}/>
                         <p className="slider-text">Array size: {props.arrSize}</p>
@@ -78,6 +112,9 @@ function sort() {
                         </button>
                     </div>
             </nav>
+            <ReactModal isOpen={isModalOpen}>
+                {getHTML()}
+            </ReactModal>
         </div>
     )
 
