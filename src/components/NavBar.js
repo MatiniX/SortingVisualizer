@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import Select from "react-select"
 import ReactModal from "react-modal"
+
+import MergeSortInfo from "./infoTabs/MergeSortInfo"
 
 function NavBar(props) {
 
@@ -65,7 +67,7 @@ function getHTML() {
 
     switch (currAlgorithm) {
         case "mergeSort":
-            html  = <button onClick={() => setModalOpen(false)}>Merge Sort</button>;
+            html  = <MergeSortInfo/>
             break;
         case "quickSort":
             html = <button onClick={() => setModalOpen(false)}>Quick Sort</button>
