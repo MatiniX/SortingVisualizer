@@ -67,7 +67,7 @@ function getHTML() {
 
     switch (currAlgorithm) {
         case "mergeSort":
-            html  = <MergeSortInfo/>
+            html  = <MergeSortInfo close={() => setModalOpen(false)}/>
             break;
         case "quickSort":
             html = <button onClick={() => setModalOpen(false)}>Quick Sort</button>
@@ -114,7 +114,7 @@ function getHTML() {
                         </button>
                     </div>
             </nav>
-            <ReactModal isOpen={isModalOpen}>
+            <ReactModal isOpen={isModalOpen} closeTimeoutMS={200}>
                 {getHTML()}
             </ReactModal>
         </div>

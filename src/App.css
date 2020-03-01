@@ -222,3 +222,28 @@
   text-align: left;
   background-color: #d1cece;
 }
+.code-highlight {
+  display: inline-block;
+  font-family: monospace;
+}
+.explanation-section {
+  padding: 0 0.2em 0 0.5em;
+  background-color: #e0e400;
+  font-size: 1rem;
+  text-align: left;
+  line-height: 0;
+  margin-bottom: 1em;
+  border-radius: 1em;
+}
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open{
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close{
+  opacity: 0;
+}
