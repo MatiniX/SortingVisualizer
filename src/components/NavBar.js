@@ -3,6 +3,7 @@ import Select from "react-select"
 import ReactModal from "react-modal"
 
 import MergeSortInfo from "./infoTabs/MergeSortInfo"
+import QuickSortInfo from "./infoTabs/QuickSortInfo";
 
 function NavBar(props) {
 
@@ -70,7 +71,7 @@ function getHTML() {
             html  = <MergeSortInfo close={() => setModalOpen(false)}/>
             break;
         case "quickSort":
-            html = <button onClick={() => setModalOpen(false)}>Quick Sort</button>
+            html = <QuickSortInfo close={() => setModalOpen(false)}/>
             break;
         case "bubbleSort":
             html = <button onClick={() => setModalOpen(false)}>Bubble Sort</button>
