@@ -46,7 +46,7 @@ export default function QuickSortInfo(props) {
                         však pomerne vzácny. Operuje na mieste, potrebuje len malé monožstvo dotatočnej pamäte aby zoradil prvky.
                     </p>
                     <p>
-                        Implementovať ja dá mnohými spôsobmi. Implementácie sa potom líšia na základe toho aku schému pre delenie prvkov používajú a akým 
+                        Implementovať sa dá mnohými spôsobmi. Implementácie sa potom líšia na základe toho aku schému pre delenie prvkov používajú a akým 
                         spôsobom je vybraný <i>pivot</i> v liste.
                     </p>
                     <p>
@@ -101,11 +101,10 @@ function partition(array, startIdx, endIdx) {
                     </pre>
                     </div>
                     <div className="explanation-section">
-                        Takto spôsobom je implementovaný quick sort na tejto stránke. Použitá je Lomutova schéma a za pivota je výbraný posledný prvok v liste. 
+                        Takýmto spôsobom je implementovaný quick sort na tejto stránke. Použitá je Lomutova schéma a za <i>pivot</i> je výbraný posledný prvok v liste. 
                         Samotné triedenie a výber pivota prebieha vo funkcii <p className="code-highlight">partition()</p>, ktorá potom navráti index pivota a potom
                         funkcia <p className="code-highlight">quickSort()</p> rekurzívne volá samu seba naľavej a napravej strane listu od pivota. Toto je
-                        vo vizualizácii zobrazené objavením ďalších pivotných bodov a zoraďovaním prvkov pred nimi.
-                        
+                        vo vizualizácii zobrazené objavením ďalších pivotných bodov (zelené hodnoty) a zoraďovaním prvkov pred nimi.  
                     </div>
                 </div>
             </div>
