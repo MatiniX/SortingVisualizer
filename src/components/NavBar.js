@@ -5,7 +5,8 @@ import ReactModal from "react-modal"
 import MergeSortInfo from "./infoTabs/MergeSortInfo"
 import QuickSortInfo from "./infoTabs/QuickSortInfo"
 import BubbleSortInfo from "./infoTabs/BubbleSortInfo"
-import InsertionSortInfo from "./infoTabs/InsertionSortInfo";
+import InsertionSortInfo from "./infoTabs/InsertionSortInfo"
+import SelectioSortInfo from "./infoTabs/SelectionSortInfo"
 
 function NavBar(props) {
 
@@ -82,7 +83,7 @@ function getHTML() {
             html = <InsertionSortInfo close={() => setModalOpen(false)}/>
             break;
         case "selectionSort":
-            html = <button onClick={() => setModalOpen(false)}>Selection Sort</button>
+            html = <SelectioSortInfo close={() => setModalOpen(false)}/>
             break;
         case "shellSort":
             html = <button onClick={() => setModalOpen(false)}>Shell Sort</button>

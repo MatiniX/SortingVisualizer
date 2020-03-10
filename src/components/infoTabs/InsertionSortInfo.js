@@ -29,7 +29,7 @@ export default function InsertionSortInfo(props) {
     for (var i = 1; i < array.length; i++) {
         j = i;
         while (j > 0 && array[j - 1] > array[j]) {
-            const temp = array[j];
+            var temp = array[j];
             array[j] = array[j - 1];
             array[j - 1] = temp;
             j--;
@@ -41,7 +41,7 @@ export default function InsertionSortInfo(props) {
                     </div>
                     <div className="explanation-section">
                         Takto jednoducho možno implementovať insertion sort. Insertion sort má vlastnoť, že po <i>n</i> iteráciach je prvých <i>n</i> + 1 prvkov v
-                        liste zoradených (+ 1 preto lebo po prvej iterácii zoradíme hneď dva prvky).
+                        liste zoradených (+ 1 preto lebo po prvej iterácii zoradíme hneď dva prvky). Vo vizualizácii sú zelenou zvýraznené zoradené prvky.
                     </div>
                 </div>
             </div>
