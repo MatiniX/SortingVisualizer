@@ -9,9 +9,9 @@ export default function QuickSortInfo(props) {
             <h2 className="info-tab-title">Quick Sort</h2>
             <div className="about-section">
                 <p>
-                    Quick sort je efektívny triediaci algoritmus, ktorý patrí do kategórie "Rozdeliť a dobiť" algoritmov. Vynájdený bol roko 1959 britským
+                    Quick sort je efektívny triediaci algoritmus, ktorý patrí do kategórie "Rozdeliť a dobiť" algoritmov. Vynájdený bol roku 1959 britským
                     počítačovým vedcom menom Tony Hoare a dodnes je to bežne používnaý algoritmus pre triedenie. Správne implementovaný môže býť
-                    2- až 3- krát rýchlejší ako jeho hlavný konkurenti Merge sort a Heap sort. 
+                    2- až 3- krát rýchlejší ako jeho hlavný konkurenti merge sort a heap sort. 
                 </p>
                 <h3>Algoritmus:</h3>
                 <div>
@@ -51,8 +51,8 @@ export default function QuickSortInfo(props) {
                     </p>
                     <p>
                         Schémy pre delenie sú 2:<br/>
-                        <b>Lomutova schéma.</b> Táto schéma najprv zvolí <i>pivota</i> (typicky posledný prvok v liste). Potom algoritmus zachováva index <i>i</i>
-                        zatiaľ čo skenuje list za pomoci ďalšieho indexu <i>j</i> tak aby hodnoty od začiatku listu až po <i>i - 1</i> (vrátane) boli
+                        <b>Lomutova schéma.</b> Táto schéma najprv zvolí <i>pivota</i> (typicky posledný prvok v liste). Potom algoritmus zachováva index <i>i</i> zatiaľ
+                         čo skenuje list za pomoci ďalšieho indexu <i>j</i> tak aby hodnoty od začiatku listu až po <i>i - 1</i> (vrátane) boli
                         menšie ako <i>pivot</i> a hodnoty od <i>i</i> až po koniec listu boli väčšie ako <i>pivot</i>. Táto schéma je kompaktnejšia a ľahšie
                         pochopiteľná aj keď menej efektívna ako pôvodná Hoareova schéma.<br/>
                         <b>Hoareova schemá.</b> Originálna schéma popísaná tvorcom quick sortu. Táto schéma využíva 2 indexy na začiatku a na konci listu, ktoré
@@ -62,7 +62,7 @@ export default function QuickSortInfo(props) {
                         pretože urobí v priemere až 3-krát menej porovnaní ako Lomutova.
                     </p>
                     <p>
-                        Ďaľším problémom implementácie je potom výber <i>pivota</i>. Keďže tento krok rozhoduje právo o tom koľko porovnaní algoritmus urobí.
+                        Ďaľším problémom implementácie je potom výber <i>pivota</i>. Keďže tento krok rozhoduje práve o tom koľko porovnaní algoritmus urobí.
                         Ideálne chceme vybrať prvok, ktorý bude vo zoradenej verzii listu práve v jeho strede. Poradie v akom prvky po zoradení skončia však nevieme
                         preto výber <i>pivota</i> môžme previesť niekoľkými spôsobmi. Najľahšie je vybrať za <i>pivota</i> prvý, prostredný, posledný alebo náhodný
                         prvok. Odporúča sa však vybrať "medián troch", pri tomto výbere <i>pivota</i> sa vybere prostredná hodnota z prvého, prostredného a posledného
@@ -105,6 +105,13 @@ function partition(array, startIdx, endIdx) {
                         Samotné triedenie a výber pivota prebieha vo funkcii <p className="code-highlight">partition()</p>, ktorá potom navráti index pivota a potom
                         funkcia <p className="code-highlight">quickSort()</p> rekurzívne volá samu seba naľavej a napravej strane listu od pivota. Toto je
                         vo vizualizácii zobrazené objavením ďalších pivotných bodov (zelené hodnoty) a zoraďovaním prvkov pred nimi.  
+                    </div>
+                    <div className="references-box">
+                        <b>Zdroje:</b>
+                        <br/>
+                        <a href="https://en.wikipedia.org/wiki/Quicksort" target="_blank">Wikipedia</a>
+                        <br/>
+                        <a href="https://www.youtube.com/watch?v=PgBzjlCcFvc" target="_blank">Krátke video, ktoré znázorňuje koncept algoritmu</a>
                     </div>
                 </div>
             </div>

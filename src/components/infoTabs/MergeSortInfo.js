@@ -19,12 +19,12 @@ export default function MergeSortInfo(props) {
                         <ol>
                             <li>
                                 <p>
-                                    Rozdeliť nezoradený list na až kým neostane n "pod-list", ktoré obsahujú každý 1 prvok (list s jedným prvkom je považovaný za zoradený) 
+                                    Rozdelovať nezoradený list až kým neostane n "pod-listov", ktoré obsahujú každý 1 prvok (list s jedným prvkom je považovaný za zoradený) 
                                 </p>
                             </li>
                             <li>
                                 <p>
-                                    Opakovane zlučovať tieto pod-list a výtvárať nové zoradené pod-list až kým neostane len jeden. To bude náš zoradený rad.
+                                    Opakovane zlučovať tieto "pod-listy" a výtvárať nové zoradené "pod-listy" až kým neostane len jeden. To bude náš zoradený list.
                                 </p>
                             </li>
                         </ol>
@@ -92,9 +92,16 @@ function mergeSort(mainArray, startIdx, endIdx, auxiliaryArray) {
                         poloviciach listu s tým rozdielom, že tento raz vymeníme poradie parametrov a namiesto <p className="code-highlight">mainArray</p> dáme <p className="code-highlight">auxiliaryArray</p>.
                         Takto postupne zoradíme <p className="code-highlight">auxiliaryArray</p>, až kým
                         neostanú dve zoradené polovice listu tie potom v zlúčime do finálneho listu ako možno vidieť vo vizualizácii. Treba si uvedomiť že celý čas pracujeme
-                        na <p className="code-highlight">auxiliaryArray</p> ktorú postupne rozdeľujeme a následovne zlučujeme a až v poslednej iterácii rekurzie
+                        na <p className="code-highlight">auxiliaryArray</p>, ktorú postupne rozdeľujeme a následovne zlučujeme a až v poslednej iterácii rekurzie
                         zlúčime hodnoty do <p className="code-highlight">mainArray</p> čo bude naša finálna zoradená verzia listu. Vo vizualizácii môžete vidieť 
                         rekurziu prebiehať súčasne.
+                    </div>
+                    <div className="references-box">
+                        <b>Zdroje:</b>
+                        <br/>
+                        <a href="https://en.wikipedia.org/wiki/Merge_sort" target="_blank">Wikipedia</a>
+                        <br/>
+                        <a href="https://www.youtube.com/watch?v=JSceec-wEyw" target="_blank">Krátke video, ktoré znázorňuje koncept algoritmu</a>
                     </div>
                 </div>
             </div>

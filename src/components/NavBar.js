@@ -7,6 +7,7 @@ import QuickSortInfo from "./infoTabs/QuickSortInfo"
 import BubbleSortInfo from "./infoTabs/BubbleSortInfo"
 import InsertionSortInfo from "./infoTabs/InsertionSortInfo"
 import SelectioSortInfo from "./infoTabs/SelectionSortInfo"
+import ShellSortInfo from "./infoTabs/ShellSortInfo"
 
 function NavBar(props) {
 
@@ -86,7 +87,7 @@ function getHTML() {
             html = <SelectioSortInfo close={() => setModalOpen(false)}/>
             break;
         case "shellSort":
-            html = <button onClick={() => setModalOpen(false)}>Shell Sort</button>
+            html = <ShellSortInfo close={() => setModalOpen(false)}/>
             break;
     }
     return html;

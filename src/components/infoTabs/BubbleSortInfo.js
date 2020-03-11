@@ -10,12 +10,12 @@ export default function BubbleSortInfo(props) {
             <h2 className="info-tab-title">Bubble Sort</h2>
             <div className="about-section">
                 <p>
-                   Bubble sort je jednoduchý avšak veľmi neefektívny tiediaci algoritmus. Kvôli svojej jednoduchosti je buble sort často používaný na
+                   Bubble sort je jednoduchý avšak veľmi neefektívny tiediaci algoritmus. Kvôli svojej jednoduchosti je bubble sort často používaný na
                    predstavenie konceptu triediaceho algoritmu. Aj keď niektorý odborníci doporučujú aby sa už nevyučoval.
                 </p>
                 <h3>Algoritmus:</h3>
                 <div>
-                    Kocept bubble sortu je veľmi jednoduchý. Porovnávať susedné prvky v liste a vymeniť ich v prípade ak sú v zlom poradí. Tento postup
+                    Koncept bubble sortu je veľmi jednoduchý. Porovnávať susedné prvky v liste a vymeniť ich v prípade ak sú v zlom poradí. Tento postup
                     opakovať až kým list nebude zoradený.
                     
                     <p>
@@ -42,6 +42,13 @@ export default function BubbleSortInfo(props) {
                     <div className="explanation-section">
                         Implementovať bubble sort je veľmi jednoduché ako môžte vidieť. Aj keď je bubble sort veľmi neefektívny má využitie v počítačovej grafike vďaka svojej
                         schopnosti detekovať malé chyby(ako napríklad nesprávne poradie dvoch prvkov) v takmer zoradených listoch. 
+                    </div>
+                    <div className="references-box">
+                        <b>Zdroje:</b>
+                        <br/>
+                        <a href="https://en.wikipedia.org/wiki/Bubble_sort" target="_blank">Wikipedia</a>
+                        <br/>
+                        <a href="https://www.youtube.com/watch?v=nmhjrI-aW5o" target="_blank">Krátke video, ktoré znázorňuje koncept algoritmu</a>
                     </div>
                 </div>
             </div>

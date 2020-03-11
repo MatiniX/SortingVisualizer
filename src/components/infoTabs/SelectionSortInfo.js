@@ -40,7 +40,14 @@ export default function SelectionSoerInfo(props) {
                     <div className="explanation-section">
                         Týmto spôsobom je implementovaný selection sort na tejto stránke. Selection sort sa od iných triediacich algoritmov líši hlavne tým,
                         že vždy urobí najmenej <i>n</i> - 1 výmien. Zoradená polovica je vo vizualizácii znázornená zelenou a najmenší prvok je zvýraznený 
-                        údajne <i>hnedou</i> (možno som len farboslepý). Červenou je zvýraznený prvok cez, ktorý pravé iterujem. 
+                        údajne <i>hnedou</i> (možno som len farboslepý). Červenou je zvýraznený prvok, cez ktorý pravé iterujem. 
+                    </div>
+                    <div className="references-box">
+                        <b>Zdroje:</b>
+                        <br/>
+                        <a href="https://en.wikipedia.org/wiki/Selection_sort" target="_blank">Wikipedia</a>
+                        <br/>
+                        <a href="https://www.youtube.com/watch?v=xWBP4lzkoyM" target="_blank">Krátke video, ktoré znázorňuje koncept algoritmu</a>
                     </div>
                 </div>
             </div>

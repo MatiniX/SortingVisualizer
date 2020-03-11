@@ -242,6 +242,20 @@
 .explanation-section p {
   margin: 0;
 }
+.references-box {
+  text-align: left;
+}
+a {
+  color: #3166f7;
+  text-decoration: none;
+}
+a:link {
+  color: #3166f7;
+}
+a:hover {
+  color: #0044ff;
+  text-decoration: underline;
+}
 .ReactModal__Overlay {
   opacity: 0;
   transition: opacity 200ms ease-in-out;
