@@ -1,8 +1,17 @@
 import React, { useState, useEffect } from "react"
 import algorithms from "../sortingAlgorithms/sortingAlgorithms"
 import NavBar from "./NavBar"
+import ReactModal from "react-modal"
+import InfoTab from "./infoTabs/InfoTab"
 
 function SortingVisualizer() {
+    if (sessionStorage.getItem("infoModalBool") === null) {
+        //console.log(infoModalShow);
+        sessionStorage.setItem("infoModalBool", JSON.stringify(true));
+    }
+    const [infoModalShow, setInfoModalShow] = useState(JSON.parse(sessionStorage.getItem("infoModalBool")) || true);
+    
+
     const [SORT_SPEED_MS, setSortSpeed] = useState(5);
     const [ARRAY_SIZE, setArrSize] = useState(100);
 
@@ -15,6 +24,10 @@ function SortingVisualizer() {
     useEffect(() => {
         resetArray();
     },[ARRAY_SIZE]);
+
+    useEffect(() => {
+        sessionStorage.setItem("infoModalBool", infoModalShow)
+    },[infoModalShow]);
    
     function resetArray() {
         let arr = []
@@ -177,6 +190,9 @@ function SortingVisualizer() {
                 </div>
             )}
             </div>
+            <ReactModal isOpen={infoModalShow} >
+                <InfoTab close={() => setInfoModalShow(false)}/>
+            </ReactModal>
         </>
     )
 }
