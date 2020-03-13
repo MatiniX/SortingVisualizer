@@ -8,7 +8,7 @@ function SortingVisualizer() {
     if (sessionStorage.getItem("infoModalBool") === null) {
         sessionStorage.setItem("infoModalBool", JSON.stringify(true));
     }
-    const [infoModalShow, setInfoModalShow] = useState(JSON.parse(sessionStorage.getItem("infoModalBool")) || true);
+    const [infoModalShow, setInfoModalShow] = useState(JSON.parse(sessionStorage.getItem("infoModalBool")));
     
 
     const [SORT_SPEED_MS, setSortSpeed] = useState(5);

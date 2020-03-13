@@ -39,6 +39,13 @@ export default function InfoTab(props) {
                     Aplikáciu vytvoril Martin Michálik. Vek 16 rokov. Toho času ešte žiak základnej školy.<br/>
                     <a href="https://github.com/MatiniX/SortingVisualizer" target="_blank" rel="noopener noreferrer">GitHub</a>
                 </p>
+                <p style={{opacity: "0.8", marginTop: "10em"}}>
+                    <b>PS:</b> Ak spustíte vizualizáciu niektorého algoritmu musíte počkat až kým vizualizácia neskonči. Takže ak sa vám stane že pustíte bubble sort
+                    na liste s 150+ prvkami hoci aj na základnej rýchlosti 5<i>ms</i> (ako dlho bude trvať animácia celého buble sortu môžte potom vypočitať
+                    vozorcomm (<i>n*n*zdržanie(ms)*2</i>) kde <i>n</i> je počet prvkov). Ak sa ocitnete v takejto situácii a nechcete čakať riešením je 
+                    stlačiť <i>F5</i> (jednoducho refreshnúť stránku). Táto infokarta sa zobrazí len pri otvorení stránky (ak ju chcete zobrziť znova musíte stránku 
+                    zavoriť a znova otvoriť).  
+                </p>
             </div>
         </div>
     )
