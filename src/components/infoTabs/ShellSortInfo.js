@@ -18,7 +18,8 @@ export default function ShellSortInfo(props) {
                      rovanko ako insertion sort, po tejto iterácii je list zoradený. <i>Medzeru</i> potom vypočítame pre každú iteráciu. 
                     <p>
                        Shell sort operuje na mieste. Časová komplexsnoť tohto algoritmu potom závisí od toho akým spôsobom vypočítavame <i>medzeru</i>, ktorá je medzi
-                       prvkami. Všeobecne ale platí, že pre najhorší prípad je časová komplexnosť O(n<sup>2</sup>) a pre priemerný je to O(n<sup>3/2</sup>) alebo 
+                       prvkami. Všeobecne ale platí, že pre najhorší prípad je <p className="pop-up">časová komplexnosť<div>Časová komplexnosť algoritmu popisuje čas, ktorý algoritmus potrebuje k svojej exekúcii.
+                            Obyčajne je odhadnutá počitaním počtom základnych operácii, ktoré algoritmus urobí za predpokladu že každá táto operácia zaberie konštantný čas.</div>&nbsp;</p> O(n<sup>2</sup>) a pre priemerný je to O(n<sup>3/2</sup>) alebo 
                        O(n<sup>5/4</sup>). Určenie časovej komplexnosti pre niektoré sekvencie <i>medzier</i> ostáva ako otvorený problém.
                     </p>
                     <div className="code-section">
@@ -46,9 +47,9 @@ export default function ShellSortInfo(props) {
                     <div className="references-box">
                         <b>Zdroje:</b>
                         <br/>
-                        <a href="https://en.wikipedia.org/wiki/Shellsort" target="_blank">Wikipedia</a>
+                        <a href="https://en.wikipedia.org/wiki/Shellsort" target="_blank" rel="noopener noreferrer">Wikipedia</a>
                         <br/>
-                        <a href="https://www.youtube.com/watch?v=SHcPqUe2GZM" target="_blank">Krátke video, ktoré znázorňuje koncept algoritmu</a>
+                        <a href="https://www.youtube.com/watch?v=SHcPqUe2GZM" target="_blank" rel="noopener noreferrer">Krátke video, ktoré znázorňuje koncept algoritmu</a>
                     </div>
                 </div>
             </div>

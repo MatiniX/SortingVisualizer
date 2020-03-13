@@ -37,12 +37,13 @@ export default function QuickSortInfo(props) {
                                 </p>
                             </li>
                         </ol>
-                        <img src={image} style={{margin: "2em 0 0 2em"}}/>
+                        <img src={image} style={{margin: "2em 0 0 2em"}} alt="mal by tu byť animovaný obrázok ale není :("/>
                     </div>
                     <br/>
                     <br/>
                     <p>
-                        Časová komplexnosť quick sortu je O(n log n) pre priemerný prípad ale pre najhorší prípad je to O(n<sup>2</sup>). Najhorší prípad je
+                    <p className="pop-up">Časová komplexnosť<div>Časová komplexnosť algoritmu popisuje čas, ktorý algoritmus potrebuje k svojej exekúcii.
+                            Obyčajne je odhadnutá počitaním počtom základnych operácii, ktoré algoritmus urobí za predpokladu že každá táto operácia zaberie konštantný čas.</div>&nbsp;</p> quick sortu je O(n log n) pre priemerný prípad ale pre najhorší prípad je to O(n<sup>2</sup>). Najhorší prípad je
                         však pomerne vzácny. Operuje na mieste, potrebuje len malé monožstvo dotatočnej pamäte aby zoradil prvky.
                     </p>
                     <p>
@@ -109,9 +110,9 @@ function partition(array, startIdx, endIdx) {
                     <div className="references-box">
                         <b>Zdroje:</b>
                         <br/>
-                        <a href="https://en.wikipedia.org/wiki/Quicksort" target="_blank">Wikipedia</a>
+                        <a href="https://en.wikipedia.org/wiki/Quicksort" target="_blank" rel="noopener noreferrer">Wikipedia</a>
                         <br/>
-                        <a href="https://www.youtube.com/watch?v=PgBzjlCcFvc" target="_blank">Krátke video, ktoré znázorňuje koncept algoritmu</a>
+                        <a href="https://www.youtube.com/watch?v=PgBzjlCcFvc" target="_blank" rel="noopener noreferrer">Krátke video, ktoré znázorňuje koncept algoritmu</a>
                     </div>
                 </div>
             </div>

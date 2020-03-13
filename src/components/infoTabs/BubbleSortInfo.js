@@ -19,7 +19,8 @@ export default function BubbleSortInfo(props) {
                     opakovať až kým list nebude zoradený.
                     
                     <p>
-                        Časová komplexnosť bubble sortu je O(n<sup>2</sup>) pre priemerný aj najhorší prípad. Kvôli tomuto je bubble sort tak neefektívny. Dokonca
+                    <p className="pop-up">Časová komplexnosť<div>Časová komplexnosť algoritmu popisuje čas, ktorý algoritmus potrebuje k svojej exekúcii.
+                            Obyčajne je odhadnutá počitaním počtom základnych operácii, ktoré algoritmus urobí za predpokladu že každá táto operácia zaberie konštantný čas.</div>&nbsp;</p> bubble sortu je O(n<sup>2</sup>) pre priemerný aj najhorší prípad. Kvôli tomuto je bubble sort tak neefektívny. Dokonca
                         aj iné triediace algoritmy, ktoré majú rovnakú časovú komplexnosť ako napríklad insertion sort, sú obecne rýcheljšie ako bubble sort.
                         Operuje na mieste. 
                     </p>
@@ -38,7 +39,7 @@ export default function BubbleSortInfo(props) {
 }`}
                         </pre>
                     </div>
-                    <img id="bubble-sort-img" src={image}></img>
+                    <img id="bubble-sort-img" src={image} alt="mal by tu byť animovaný obrázok ale není :("></img>
                     <div className="explanation-section">
                         Implementovať bubble sort je veľmi jednoduché ako môžte vidieť. Aj keď je bubble sort veľmi neefektívny má využitie v počítačovej grafike vďaka svojej
                         schopnosti detekovať malé chyby(ako napríklad nesprávne poradie dvoch prvkov) v takmer zoradených listoch. 
@@ -46,9 +47,9 @@ export default function BubbleSortInfo(props) {
                     <div className="references-box">
                         <b>Zdroje:</b>
                         <br/>
-                        <a href="https://en.wikipedia.org/wiki/Bubble_sort" target="_blank">Wikipedia</a>
+                        <a href="https://en.wikipedia.org/wiki/Bubble_sort" target="_blank" rel="noopener noreferrer">Wikipedia</a>
                         <br/>
-                        <a href="https://www.youtube.com/watch?v=nmhjrI-aW5o" target="_blank">Krátke video, ktoré znázorňuje koncept algoritmu</a>
+                        <a href="https://www.youtube.com/watch?v=nmhjrI-aW5o" target="_blank" rel="noopener noreferrer">Krátke video, ktoré znázorňuje koncept algoritmu</a>
                     </div>
                 </div>
             </div>

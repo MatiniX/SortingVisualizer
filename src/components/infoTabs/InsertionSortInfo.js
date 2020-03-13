@@ -18,7 +18,8 @@ export default function InsertionSortInfo(props) {
                     Insertion sort iteruje cez list a postupne z každou iteráciou vyberie prvok a správne ho umiestni na jeho pozíciu. Tento postup opakuje až kým
                     v liste neostávajú žiadne nezoradené prvky. 
                     <p>
-                       Časová komplexnosť insertion sortu je O(n<sup>2</sup>) pre priemerný a najhorší prípad. Operuje na mieste. Jednou z jeho výhod je, že patrí medzi <i>online</i> algoritmy.
+                    <p className="pop-up">Časová komplexnosť<div>Časová komplexnosť algoritmu popisuje čas, ktorý algoritmus potrebuje k svojej exekúcii.
+                            Obyčajne je odhadnutá počitaním počtom základnych operácii, ktoré algoritmus urobí za predpokladu že každá táto operácia zaberie konštantný čas.</div>&nbsp;</p> insertion sortu je O(n<sup>2</sup>) pre priemerný a najhorší prípad. Operuje na mieste. Jednou z jeho výhod je, že patrí medzi <i>online</i> algoritmy.
                         To znamená, že dokáže spracovať dáta súčasne ako ich prijíma. Aj keď je neefektívny pre veľké listy, tak pre malé listy
                        patrí k najrýchlejším, dokonca je rýchlejší ako quick sort.
                     </p>
@@ -37,7 +38,7 @@ export default function InsertionSortInfo(props) {
     }
 }`}
                         </pre>
-                        <img src={image} style={{marginLeft: "94em", top: "16.3em"}}></img>
+                        <img src={image} style={{marginLeft: "94em", top: "16.3em"}} alt="mal by tu byť animovaný obrázok ale není :("></img>
                     </div>
                     <div className="explanation-section">
                         Takto jednoducho možno implementovať insertion sort. Insertion sort má vlastnoť, že po <i>n</i> iteráciach je prvých <i>n</i> + 1 prvkov v
@@ -46,9 +47,9 @@ export default function InsertionSortInfo(props) {
                     <div className="references-box">
                         <b>Zdroje:</b>
                         <br/>
-                        <a href="https://en.wikipedia.org/wiki/Insertion_sort" target="_blank">Wikipedia</a>
+                        <a href="https://en.wikipedia.org/wiki/Insertion_sort" target="_blank" rel="noopener noreferrer">Wikipedia</a>
                         <br/>
-                        <a href="https://www.youtube.com/watch?v=OGzPmgsI-pQ" target="_blank">Krátke video, ktoré znázorňuje koncept algoritmu</a>
+                        <a href="https://www.youtube.com/watch?v=OGzPmgsI-pQ" target="_blank" rel="noopener noreferrer">Krátke video, ktoré znázorňuje koncept algoritmu</a>
                     </div>
                 </div>
             </div>

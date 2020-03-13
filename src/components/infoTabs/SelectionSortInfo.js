@@ -16,7 +16,8 @@ export default function SelectionSoerInfo(props) {
                     Selection sort rozdelí list na zoradenú a nezoradenú polovicu. Potom iteruje cez nezoradenú polovicu z ktorej vybere najmenší prvok a vymení ho 
                     s prvým prvkom v nezoradenej polovici a potom posunie hranice obidvoch polovíc. Zpočiatku je zoradená polovica prázdna a nezoradená polovica je celý list.
                     <p>
-                       Časová komplexnosť je O(n<sup>2</sup>) pre priemerný a najhorší prípad. Operuje na mieste.
+                    <p className="pop-up">Časová komplexnosť<div>Časová komplexnosť algoritmu popisuje čas, ktorý algoritmus potrebuje k svojej exekúcii.
+                            Obyčajne je odhadnutá počitaním počtom základnych operácii, ktoré algoritmus urobí za predpokladu že každá táto operácia zaberie konštantný čas.</div>&nbsp;</p> je O(n<sup>2</sup>) pre priemerný a najhorší prípad. Operuje na mieste.
                     </p>
                     <div className="code-section">
                         <pre>
@@ -35,7 +36,7 @@ export default function SelectionSoerInfo(props) {
     }
 }`}
                         </pre>
-                        <img src={image} style={{scale: "0.56", marginLeft: "107.5em", top: "10em"}}></img>
+                        <img src={image} style={{scale: "0.56", marginLeft: "107.5em", top: "10em"}} alt="mal by tu byť animovaný obrázok ale není :("></img>
                     </div>
                     <div className="explanation-section">
                         Týmto spôsobom je implementovaný selection sort na tejto stránke. Selection sort sa od iných triediacich algoritmov líši hlavne tým,
@@ -45,9 +46,9 @@ export default function SelectionSoerInfo(props) {
                     <div className="references-box">
                         <b>Zdroje:</b>
                         <br/>
-                        <a href="https://en.wikipedia.org/wiki/Selection_sort" target="_blank">Wikipedia</a>
+                        <a href="https://en.wikipedia.org/wiki/Selection_sort" target="_blank" rel="noopener noreferrer">Wikipedia</a>
                         <br/>
-                        <a href="https://www.youtube.com/watch?v=xWBP4lzkoyM" target="_blank">Krátke video, ktoré znázorňuje koncept algoritmu</a>
+                        <a href="https://www.youtube.com/watch?v=xWBP4lzkoyM" target="_blank" rel="noopener noreferrer">Krátke video, ktoré znázorňuje koncept algoritmu</a>
                     </div>
                 </div>
             </div>

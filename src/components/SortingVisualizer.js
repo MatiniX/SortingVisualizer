@@ -6,29 +6,38 @@ import InfoTab from "./infoTabs/InfoTab"
 
 function SortingVisualizer() {
     if (sessionStorage.getItem("infoModalBool") === null) {
-        //console.log(infoModalShow);
         sessionStorage.setItem("infoModalBool", JSON.stringify(true));
     }
     const [infoModalShow, setInfoModalShow] = useState(JSON.parse(sessionStorage.getItem("infoModalBool")) || true);
     
 
     const [SORT_SPEED_MS, setSortSpeed] = useState(5);
-    const [ARRAY_SIZE, setArrSize] = useState(100);
+    const [ARRAY_SIZE, setArrSize] = useArray(100);
+    const [isSorting, setIsSorting] = useState(false);
 
     const [arr, setArr] = useState([]);
-
-    useEffect( () => {       
-        resetArray();
-    },[])
-
-    useEffect(() => {
-        resetArray();
-    },[ARRAY_SIZE]);
 
     useEffect(() => {
         sessionStorage.setItem("infoModalBool", infoModalShow)
     },[infoModalShow]);
    
+    function useArray(size) {
+        const [ARRAY_SIZE, setArrSize] = useState(size);
+
+        useEffect(() => {
+            function resetArrayHook() {
+                let arr = []
+                for(let i = 0; i < ARRAY_SIZE; i++){
+                    arr.push(randomNumFromInerval(5,1000));
+                }
+                console.log(arr);
+                setArr(arr);
+            }
+            resetArrayHook();
+        },[ARRAY_SIZE]);
+        return [ARRAY_SIZE, setArrSize];
+    }
+
     function resetArray() {
         let arr = []
         for(let i = 0; i < ARRAY_SIZE; i++){
@@ -40,13 +49,16 @@ function SortingVisualizer() {
 
     function mergeSort() {
         const arrayBars = document.getElementsByClassName("array-bar");
-        algorithms.getMergeSortAnimations(arr, arrayBars, SORT_SPEED_MS);
+        setIsSorting(true);
+        algorithms.getMergeSortAnimations(arr, arrayBars, SORT_SPEED_MS, finishCallback);
     }
     function quickSort() {
         const arrayBars = document.getElementsByClassName("array-bar");
-        algorithms.getQuickSortAnimations(arr, arrayBars, SORT_SPEED_MS);
+        setIsSorting(true);
+        algorithms.getQuickSortAnimations(arr, arrayBars, SORT_SPEED_MS, finishCallback);
     }
     function bubbleSort() {
+        toggleButtons(true);
         const animations = algorithms.getBubbleSortAnimations(arr);
         for (let i = 0; i < animations.length; i++) {
             const arrayBars = document.getElementsByClassName("array-bar");
@@ -67,11 +79,15 @@ function SortingVisualizer() {
                 setTimeout(() => {
                     barOneStyle.backgroundColor = color;
                     barTwoStyle.backgroundColor = color;
+                    if (i === animations.length - 1) {
+                        toggleButtons(false);
+                    }
                 }, i * SORT_SPEED_MS);
             }
         }
     }
     function insertionSort() {
+        toggleButtons(true);
         const animations = algorithms.getInsertionSortAnimations(arr);
         console.log(animations);
         for (let i = 0; i < animations.length; i++) {
@@ -80,6 +96,7 @@ function SortingVisualizer() {
                 const barStyle = arrayBars[i].style;
                 setTimeout(() => {
                     barStyle.backgroundColor = 'green';
+
                 }, i * SORT_SPEED_MS);
             }
             else if (i === animations.length - 1) {
@@ -87,6 +104,7 @@ function SortingVisualizer() {
                     const barStyle = bar.style;
                     setTimeout(() => {
                         barStyle.backgroundColor = '#05b2dd';
+                        toggleButtons(false);
                     }, i * SORT_SPEED_MS);
                 }
             }
@@ -101,6 +119,7 @@ function SortingVisualizer() {
         }
     }
     function selectionSort() {
+        toggleButtons(true);
         const animations = algorithms.getSelectionSortAnimations(arr);
         console.log(animations);
         for (let i = 0; i < animations.length; i++) {
@@ -110,6 +129,7 @@ function SortingVisualizer() {
                     const barStyle = bar.style;
                     setTimeout(() => {
                         barStyle.backgroundColor = '#05b2dd';
+                        toggleButtons(false);
                     }, i * SORT_SPEED_MS);
                 }
             }
@@ -124,6 +144,7 @@ function SortingVisualizer() {
         }
     }
     function shellSort() {
+        toggleButtons(true);
         const animations = algorithms.getShellSortAnimations(arr);
         console.log(animations);
         for (let i = 0; i < animations.length; i++) {
@@ -142,32 +163,24 @@ function SortingVisualizer() {
                 setTimeout(() => {
                     barStyle.backgroundColor = state;
                     barStyle.height = `${barTwo * 0.75}px`;
+                    if (i === animations.length - 1) {
+                        toggleButtons(false);
+                    }
                 }, i * SORT_SPEED_MS);
             }
         }
     }
 
-    function compareArrays(arrOne, arrTwo) {
-        for (let i = 0; i < arrOne.length; i++) {
-            if (arrOne[i] !== arrTwo[i]) {
-                return false
-            }
-        }
-        return true
+    function finishCallback() {
+        setIsSorting(false);
     }
-
-    function testSort() {
-        for (let i = 0; i < 100; i++) {
-            const testArr = [];
-            for(let j = 0; j < randomNumFromInerval(4,100); j++) {
-                testArr.push(randomNumFromInerval(0,1000))
-            }
-            const arrCopy = testArr.slice()
-            testArr.sort((a, b) => a - b)
-            const animations = algorithms.getShellSortAnimations(arrCopy);
-            const result = compareArrays(testArr, arrCopy);
-            console.log(result);
-        }
+    function toggleButtons(enabled) {
+        let genButton = document.getElementById("genButton")
+        let sortButton = document.getElementById("sortButton")
+        console.log(genButton);
+        console.log(sortButton);
+        genButton.disabled = enabled;
+        sortButton.disabled = enabled;
     }
 
     return(
@@ -176,6 +189,7 @@ function SortingVisualizer() {
                 resetArray: resetArray,
                 setArrSize: setArrSize,
                 setSortSpeed: setSortSpeed,
+                setIsSorting: setIsSorting,
                 mergeSort: mergeSort,
                 quickSort: quickSort,
                 bubbleSort: bubbleSort,
@@ -183,7 +197,7 @@ function SortingVisualizer() {
                 selectionSort: selectionSort,
                 shellSort: shellSort
             }}
-             arrSize={ARRAY_SIZE} sortSpeed={SORT_SPEED_MS}/>
+             arrSize={ARRAY_SIZE} sortSpeed={SORT_SPEED_MS} isSorting={isSorting}/>
             <div className="array-container">
             {arr.map((value, index) => 
                 <div className="array-bar" key={index} style={{height:`${value * 0.75}px`}}>

@@ -28,12 +28,14 @@ export default function MergeSortInfo(props) {
                                 </p>
                             </li>
                         </ol>
-                        <img src={image}></img>
+                        <img src={image} alt="mal bi tu byť animovaný obrázok ale není :("></img>
                     </div>
                     <br />
                     <br />
                     <p>
-                        Časová komplexnosť Merge sortu je O(n log n) pre priemerný aj najhorší prípad. Neoperuje však na mieste. To znamená, že sú potrebné pomocné kópie 
+                        <p className="pop-up">Časová komplexnosť<div>Časová komplexnosť algoritmu popisuje čas, ktorý algoritmus potrebuje k svojej exekúcii.
+                            Obyčajne je odhadnutá počitaním počtom základnych operácii, ktoré algoritmus urobí za predpokladu že každá táto operácia zaberie konštantný čas.</div>&nbsp;</p>
+                         Merge sortu je O(n log n) pre priemerný aj najhorší prípad. Neoperuje však na mieste. To znamená, že sú potrebné pomocné kópie 
                         hodnôt.
                     </p>
                     <p>
@@ -99,9 +101,9 @@ function mergeSort(mainArray, startIdx, endIdx, auxiliaryArray) {
                     <div className="references-box">
                         <b>Zdroje:</b>
                         <br/>
-                        <a href="https://en.wikipedia.org/wiki/Merge_sort" target="_blank">Wikipedia</a>
+                        <a href="https://en.wikipedia.org/wiki/Merge_sort" target="_blank" rel="noopener noreferrer">Wikipedia</a>
                         <br/>
-                        <a href="https://www.youtube.com/watch?v=JSceec-wEyw" target="_blank">Krátke video, ktoré znázorňuje koncept algoritmu</a>
+                        <a href="https://www.youtube.com/watch?v=JSceec-wEyw" target="_blank" rel="noopener noreferrer">Krátke video, ktoré znázorňuje koncept algoritmu</a>
                     </div>
                 </div>
             </div>

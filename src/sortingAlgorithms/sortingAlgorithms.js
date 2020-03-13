@@ -1,9 +1,11 @@
+
 //#region Merge Sort
 
-function getMergeSortAnimations(array, DOMBars, sleepMS) {
+async function getMergeSortAnimations(array, DOMBars, sleepMS, finishedCallback) {
     if(array.length <= 1) return array;
     const auxiliaryArray = array.slice();
-    mergeSortHelper(array, 0, array.length - 1, auxiliaryArray, DOMBars, sleepMS);
+    await mergeSortHelper(array, 0, array.length - 1, auxiliaryArray, DOMBars, sleepMS);
+    finishedCallback();
 }
 
 async function mergeSortHelper(mainArray, startIdx, endIdx, auxiliaryArray, DOMBars, sleepMS) {
@@ -65,9 +67,10 @@ async function doMergeSort(mainArray, startIdx, middleIdx, endIdx, auxiliaryArra
 //#endregion
 
 //#region Quick Sort
-function getQuickSortAnimations(array, DOMBars, sleepMS) {
+async function getQuickSortAnimations(array, DOMBars, sleepMS, finishedCallback) {
     if(array.length <= 1) return array;
-    quickSort(array, 0, array.length - 1, DOMBars, sleepMS);
+    await quickSort(array, 0, array.length - 1, DOMBars, sleepMS);
+    finishedCallback();
 }
 
 async function quickSort(array, startIdx, endIdx, DOMBars, sleepMS) {

@@ -65,9 +65,12 @@ function sort() {
         case "shellSort":
             props.methods.shellSort()
             break;
+        default:
+            console.error("nemalo by sa nikdy stať")
+            break;
     }
 }
-function getHTML() {
+function getInfoTabHTML() {
     let html;
 
     switch (currAlgorithm) {
@@ -89,6 +92,9 @@ function getHTML() {
         case "shellSort":
             html = <ShellSortInfo close={() => setModalOpen(false)}/>
             break;
+        default:
+            console.error("nemalo by sa nikdy stať")
+            break;
     }
     return html;
 }
@@ -98,8 +104,8 @@ function getHTML() {
         <div>
             <nav className="navbar-container">              
                     <div className="generate-button">
-                        <button onClick={() => props.methods.resetArray() }>
-                            <span>Generate Array</span>
+                        <button id="genButton" onClick={() => props.methods.resetArray()} disabled={props.isSorting}>
+                            <span>Generovať</span>
                         </button>
                     </div>
                     <Select options={algorithms} onChange={changeAlgorithm} defaultValue={algorithms[0]} styles={selecionStyling}/>
@@ -110,17 +116,17 @@ function getHTML() {
                     </div>
                     <div className="slider-container">
                         <input type="range" min="10" max="350" className="slider" value={props.arrSize} onChange={setArrSize}/>
-                        <p className="slider-text">Array size: {props.arrSize}</p>
+                        <p className="slider-text">Počet prvkov: {props.arrSize}</p>
                     </div>
                     <input type="text" className="sorting-speed-area" placeholder={props.sortSpeed} onChange={setSortingSpeed}/>
                     <div className="sort-button">
-                        <button onClick={sort}>
-                            <span>Sort</span>
+                        <button id="sortButton" onClick={sort} disabled={props.isSorting}>
+                            <span>Zoradiť</span>
                         </button>
                     </div>
             </nav>
             <ReactModal isOpen={isModalOpen} closeTimeoutMS={200}>
-                {getHTML()}
+                {getInfoTabHTML()}
             </ReactModal>
         </div>
     )
