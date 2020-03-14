@@ -29,7 +29,7 @@ export default function InfoTab(props) {
                 </p>
                 <h3>Predpoklady pre užívateľa</h3>
                 <p>
-                    Aplikácia nie je určená pre obyčajného Ďurka alebo Janka. Predpokladá sa, že užívateľ je oboznámený so základnymi princípmi programovania a vie čo znamená
+                    Aplikácia nie je určená pre obyčajného Ďurka alebo Janka. Predpokladá sa, že užívateľ je oboznámený so základnými princípmi programovania a vie čo znamená
                     pojem <i>array</i> (v tejto aplikácii prekladám ako <i>list.</i>) <i>Pseudocode</i>, ktorým sú napísané implementácie je len mierne upravený pôvodný
                     JavaScript (dúfam že názvy variabilov v ukážkach sú dosť sebavýstižné). Samotné ukážky sa len málo líšia od toho ako sú dané algoritmy implementované
                     práve v tejto aplikácii.
@@ -40,9 +40,9 @@ export default function InfoTab(props) {
                     <a href="https://github.com/MatiniX/SortingVisualizer" target="_blank" rel="noopener noreferrer">GitHub</a>
                 </p>
                 <p style={{opacity: "0.8", marginTop: "10em"}}>
-                    <b>PS:</b> Ak spustíte vizualizáciu niektorého algoritmu musíte počkat až kým vizualizácia neskonči. Takže ak sa vám stane že pustíte bubble sort
+                    <b>PS:</b> Ak spustíte vizualizáciu niektorého algoritmu musíte počkat až kým vizualizácia neskonči. Takže ak sa vám stane, že pustíte bubble sort
                     na liste s 150+ prvkami hoci aj na základnej rýchlosti 5<i>ms</i> (ako dlho bude trvať animácia celého buble sortu môžte potom vypočitať
-                    vozorcomm (<i>n*n*zdržanie(ms)*2</i>) kde <i>n</i> je počet prvkov). Ak sa ocitnete v takejto situácii a nechcete čakať riešením je 
+                    vozorcomm (<i>n<sup>2</sup>*zdržanie(ms)*2</i>) kde <i>n</i> je počet prvkov). Ak sa ocitnete v takejto situácii a nechcete čakať riešením je 
                     stlačiť <i>F5</i> (jednoducho refreshnúť stránku). Táto infokarta sa zobrazí len pri otvorení stránky (ak ju chcete zobrziť znova musíte stránku 
                     zavoriť a znova otvoriť).  
                 </p>
