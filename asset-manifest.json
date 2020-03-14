@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/SortingVisualizer/static/css/main.d22d3b7e.chunk.css",
+    "main.js": "/SortingVisualizer/static/js/main.9d1ebc6c.chunk.js",
+    "main.js.map": "/SortingVisualizer/static/js/main.9d1ebc6c.chunk.js.map",
+    "runtime-main.js": "/SortingVisualizer/static/js/runtime-main.2fb23952.js",
+    "runtime-main.js.map": "/SortingVisualizer/static/js/runtime-main.2fb23952.js.map",
+    "static/js/2.548744c9.chunk.js": "/SortingVisualizer/static/js/2.548744c9.chunk.js",
+    "static/js/2.548744c9.chunk.js.map": "/SortingVisualizer/static/js/2.548744c9.chunk.js.map",
+    "index.html": "/SortingVisualizer/index.html",
+    "precache-manifest.ce966cfa14b194a2bf32bf2cc146bcc9.js": "/SortingVisualizer/precache-manifest.ce966cfa14b194a2bf32bf2cc146bcc9.js",
+    "service-worker.js": "/SortingVisualizer/service-worker.js",
+    "static/css/main.d22d3b7e.chunk.css.map": "/SortingVisualizer/static/css/main.d22d3b7e.chunk.css.map",
+    "static/js/2.548744c9.chunk.js.LICENSE.txt": "/SortingVisualizer/static/js/2.548744c9.chunk.js.LICENSE.txt",
+    "static/media/Bubble-sort-example-300px.gif": "/SortingVisualizer/static/media/Bubble-sort-example-300px.d4c88b8c.gif",
+    "static/media/Insertion-sort-example-300px.gif": "/SortingVisualizer/static/media/Insertion-sort-example-300px.6e67d1c7.gif",
+    "static/media/Merge-sort-example-300px.gif": "/SortingVisualizer/static/media/Merge-sort-example-300px.a29c0dd0.gif",
+    "static/media/Selection-Sort-Animation.gif": "/SortingVisualizer/static/media/Selection-Sort-Animation.f20b8898.gif",
+    "static/media/Sorting_quicksort_anim.gif": "/SortingVisualizer/static/media/Sorting_quicksort_anim.d4e5d0a7.gif"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2fb23952.js",
+    "static/js/2.548744c9.chunk.js",
+    "static/css/main.d22d3b7e.chunk.css",
+    "static/js/main.9d1ebc6c.chunk.js"
+  ]
+}
